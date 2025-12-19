@@ -44,7 +44,7 @@ export default function ContactSection() {
             </div>
             <div>
               <p className="contact-info-label">이메일</p>
-              <p className="contact-info-value">info@lotea.org</p>
+              <p className="contact-info-value">james@lotea.org</p>
             </div>
           </div>
 
