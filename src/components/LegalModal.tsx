@@ -3,11 +3,26 @@
 
 import React, { useEffect } from "react";
 
+// ✅ 추가: termsDoc/privacyDoc가 참조하는 타입 복구
+export type LegalDocSection = {
+  id: string;
+  title: string;
+  body: string[];
+  bullets?: string[];
+};
+
+export type LegalDoc = {
+  title: string;
+  meta: string;
+  intro?: string[];
+  sections: LegalDocSection[];
+};
+
 export type Props = {
   open: boolean;
   title: string;
   onClose: () => void;
-  children: React.ReactNode; // ✅ 추가 (핵심)
+  children: React.ReactNode;
 };
 
 export default function LegalModal({ open, title, onClose, children }: Props) {
