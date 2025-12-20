@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { useState } from "react";
-import LegalModal from "@/components/LegalModal"; // 경로는 프로젝트에 맞게 조정
+import LegalModal from "@/components/LegalModal";
+import TermsContent from "@/components/legal/TermsContent";
+import PrivacyContent from "@/components/legal/PrivacyContent";
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
@@ -30,25 +32,36 @@ export default function Footer() {
       {/* 링크들 */}
       <div className="footer-links">
         <a
-          href="#"
+          href="/terms"
           onClick={(e) => {
             e.preventDefault();
-            setDoc("terms");
+            setType("terms");
             setOpen(true);
           }}
         >
           이용약관
+        </a>
+
         <a
-          href="#"
+          href="/privacy"
           onClick={(e) => {
             e.preventDefault();
-            setDoc("privacy");
+            setType("privacy");
             setOpen(true);
           }}
         >
           개인정보처리방침
         </a>
       </div>
+
+      {/* 모달 */}
+      <LegalModal
+        open={open}
+        title={type === "terms" ? "이용약관" : "개인정보처리방침"}
+        onClose={() => setOpen(false)}
+      >
+        {type === "terms" ? <TermsContent /> : <PrivacyContent />}
+      </LegalModal>
     </footer>
   );
 }
